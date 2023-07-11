@@ -2,28 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
 # Create your views here.
-author = {'Имя': 'Иван', 'Отчество': 'Петрович', 'Фамилия': 'Иванов',
-          'телефон': '8-923-600-01-02', 'email': 'vasya@mail.ru'}
-
-def home(request):
-    contex = {
-        'name': 'Петров Николай Иванович',
-        'email': 'mail@mail.ru'
-    }
-    return render(request, 'index.html', contex)
-
-
-def about(request):
-
-    # text = f"""Имя: <b>{author['Имя']}</b><br>
-    # Отчество: <b>{author['Отчество']}</b><br>
-    # Фамилия: <b>{author['Фамилия']}</b><br>
-    # телефон: <b>{author['телефон']}</b><br>
-    # email: <b>{author['email']}</b>"""
-    text = str()
-    for key, value in author.items():
-        text += str(key) + ': <b>' + str(value) + '</b><br>'
-    return HttpResponse(text)
+author = {'Имя': 'Иван', 'Фамилия': 'Петрович', 'Отчество': 'Иванов',
+          'Телефон': '8-923-600-01-02', 'email': 'vasya@mail.ru'}
 
 
 items = [
@@ -33,6 +13,30 @@ items = [
    {"id": 7, "name": "Картофель фри", "quantity": 0},
    {"id": 8, "name": "Кепка", "quantity": 124},
 ]
+menu = ['Home', 'Items', 'About']
+
+def home(request):
+    contex = {
+        'name': 'Петров Николай Иванович',
+        'email': 'mail@mail.ru',
+        'menu': menu,
+        'title': 'Home page'
+    }
+    return render(request, 'index.html', contex)
+
+
+def about(request):
+
+    # text = str()
+    # for key, value in author.items():
+    #     text += str(key) + ': <b>' + str(value) + '</b><br>'
+    #return HttpResponse(text)
+    contex={
+        'author': author,
+        'menu': menu,
+        'title': 'About author'
+    }
+    return render(request, 'about.html', contex)
 
 def get_item(request, id):
     for item in items:
@@ -44,7 +48,9 @@ def get_item(request, id):
         #     """
         #     return HttpResponse(text)
             context = {
-                'item': item
+                'item': item,
+                'menu': menu,
+                'title': 'Item page'
             }
             return render(request, 'item-page.html', context)
     return(HttpResponseNotFound(f'Item with id={id} not found'))
@@ -56,6 +62,8 @@ def items_list(request):
     # result += '</ol>'
     #return HttpResponse(result)
     context = {
-        'items': items
+        'items': items,
+        'menu': menu,
+        'title': 'Items main'
     }
     return render(request, 'items-list.html', context)

@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <h1>Приветсвую!</h1>
     Меня зовут: {{name}} <br>
+    Посмотрите на мои <a href="{% url 'Items'%}">товары</a><br><br>
     <i>Мой email для связи: {{email}} </i>
-</body>
-</html>
+{% endblock %}

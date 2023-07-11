@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Item page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <h2>Информация о товаре:</h2>
     <h3>Наименование товара: {{item.name}}</h3>
-    <div>quantity: {{item.quantity}}</div>
-</body>
-</html>
+    <div>quantity:
+        {% if item.quantity == 0 %}
+            к сожалению, товар отсутствует.
+        {% else %}
+        {{item.quantity}}
+        {% endif %}
+    </div>
+    <a href="{% url 'Items'%}"> К списку товаров </a>
+{% endblock %}
