@@ -2,12 +2,10 @@
 {% block content %}
     <h2>Информация о товаре:</h2>
     <h3>Наименование товара: {{item.name}}</h3>
-    <div>quantity:
-        {% if item.quantity == 0 %}
-            к сожалению, товар отсутствует.
-        {% else %}
-        {{item.quantity}}
-        {% endif %}
+    <div>Количество:
+        {{item.count | default:"к сожалению, товар отсутствует."}}
     </div>
+    <br>
+    Производитель: {{item.brand}}<br>
     <a href="{% url 'Items'%}"> К списку товаров </a>
 {% endblock %}
