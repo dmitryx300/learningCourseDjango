@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Приветсвую!</h1>
-    Меня зовут: {{name}} <br>
+    <h1 class="demo">Приветсвую!</h1>
+    <span style="color:blue">Меня зовут: <i>{{name}}</i></span> <br>
     Посмотрите на мои <a href="{% url 'Items'%}">товары</a><br><br>
-    <i>Мой email для связи: {{email}} </i>
+    Мой email для связи: <i>{{email}}</i>
 {% endblock %}
