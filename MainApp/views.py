@@ -15,13 +15,12 @@ author = {'Имя': 'Иван', 'Фамилия': 'Петрович', 'Отче�
 #    {"id": 7, "name": "Картофель фри", "quantity": 0},
 #    {"id": 8, "name": "Кепка", "quantity": 124},
 # ]
-menu = ['Home', 'Items', 'About']
+#menu = ['Home', 'Items', 'About']
 
 def home(request):
     contex = {
         'name': 'Петров Николай Иванович',
         'email': 'mail@mail.ru',
-        'menu': menu,
         'title': 'Home page'
     }
     return render(request, 'index.html', contex)
@@ -35,7 +34,6 @@ def about(request):
     #return HttpResponse(text)
     contex={
         'author': author,
-        'menu': menu,
         'title': 'About author'
     }
     return render(request, 'about.html', contex)
@@ -60,7 +58,6 @@ def get_item(request, id):
         return(HttpResponseNotFound(f'Item with id={id} not found'))
     context = {
         'item': item,
-        'menu': menu,
         'title': 'Item page'
     }
     return render(request, 'item-page.html', context)
@@ -74,7 +71,6 @@ def items_list(request):
     #return HttpResponse(result)
     context = {
         'items': Item.objects.all(),
-        'menu': menu,
         'title': 'Items main'
     }
     return render(request, 'items-list.html', context)

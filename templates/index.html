@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+<img width="50px" src="{% static 'test_icon.png'%}" alt="My image">
     <h1 class="demo">Приветсвую!</h1>
     <span style="color:blue">Меня зовут: <i>{{name}}</i></span> <br>
     Посмотрите на мои <a href="{% url 'Items'%}">товары</a><br><br>
